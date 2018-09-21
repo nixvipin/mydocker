@@ -10,7 +10,7 @@ pipeline {
                 sh "curl 192.168.56.101:8081"
                 sh "docker stop mynginx"
                 sh "docker commit mynginx mynginxremote:1.0"
-                sh "docker push mynginxremote:1.0"
+                sh "docker image push mynginxremote:1.0"
             }
         }
     }
