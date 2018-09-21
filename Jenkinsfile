@@ -14,14 +14,14 @@ pipeline {
         stage('DockerImageBuild') {
             steps {
                 sh "cd /data/mydocker1/mydocker"
-				sh "chmod 755 index.html"
+		sh "chmod 755 index.html"
                 sh "docker build -t mynginximage ."
             }
 		}
 		stage('RunContainer') {
             steps {
                 sh "docker run -d --name mynginx -p 8081:80 mynginximage"
-				sh "sleep 30"
+		sh "sleep 30"
                 sh "curl 192.168.56.101:8081"
             }
 		}
