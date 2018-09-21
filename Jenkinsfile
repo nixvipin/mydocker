@@ -4,7 +4,6 @@ pipeline {
     stages {
 		stage('RunCleanups') {
             steps {
-		sh "docker stop mynginx"
                 sh "docker rmi mynginximage -f"
 		sh "docker rmi mynginxtag:1.0 -f"
 		sh "docker rmi $DOCKER_USERNAME/mynginxdockerremote -f"
