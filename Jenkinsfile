@@ -1,5 +1,5 @@
 pipeline {
-    agent master
+    agent any
 	parameters {
         string(description: 'Parameter', name: 'DOCKER_USERNAME', defaultValue: 'dockeruser')
     }	
