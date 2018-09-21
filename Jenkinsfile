@@ -1,8 +1,5 @@
 pipeline {
     agent master
-	triggers {
-		pollSCM('* * * * *')
-	}
 	parameters {
         string(description: 'Parameter', name: 'DOCKER_USERNAME', defaultValue: 'dockeruser')
     }	
