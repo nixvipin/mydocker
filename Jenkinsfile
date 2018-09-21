@@ -5,6 +5,7 @@ pipeline {
         stage('DockerImageBuild') {
             steps {
                 sh "cd /data/mydocker1/mydocker"
+                sh "docker build -t mynginximage ."
                 sh "docker run -d --name mynginx -p 8081:80 mynginximage"
                 sh "curl 192.168.56.101:8081"
                 sh "docker stop mynginx"
