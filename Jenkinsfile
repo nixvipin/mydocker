@@ -2,7 +2,7 @@ pipeline {
     agent any
 	triggers { pollSCM('* * * * *') }
 	parameters {
-        string(description: 'Parameter', name: 'DOCKER_USERNAME', defaultValue: 'dockeruser')
+        string(description: 'Parameter', name: 'DOCKER_USERNAME', defaultValue: 'mydockeruser')
     }	
     stages {
 		stage('RunCleanups') {
