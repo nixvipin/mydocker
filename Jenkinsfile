@@ -2,14 +2,6 @@ pipeline {
     agent any
 	triggers { pollSCM('* * * * *') }
     stages {
-		stage('RunCleanups') {
-            steps {
-                sh "docker rmi mynginximage"
-		sh "docker rmi mynginxtag:1.0"
-		sh "docker rmi $DOCKER_USERNAME/mynginxdockerremote"
-                sh "docker rm \$(docker ps -a -q)"
-            }
-		}
         stage('DockerImageBuild') {
             steps {
                 sh "cd /data/mydocker1/mydocker"
