@@ -1,12 +1,3 @@
-    parameters {
-        string(defaultValue: "$emailRecipients",
-                description: 'List of email recipients',
-                name: 'EMAIL_RECIPIENTS')
-}
-
-
-
-
 pipeline {
     agent master
 	
