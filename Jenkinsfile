@@ -1,9 +1,27 @@
+    parameters {
+        string(defaultValue: "$emailRecipients",
+                description: 'List of email recipients',
+                name: 'EMAIL_RECIPIENTS')
+}
+
+
+
+
 pipeline {
-    agent any
-	triggers { pollSCM('* * * * *') }
+    agent master
+	
+	    parameters {
+        string(defaultValue: "$emailRecipients",
+                description: 'List of email recipients',
+                name: 'EMAIL_RECIPIENTS')
+}
+	
+	
     stages {
         stage('DockerImageBuild') {
             steps {
+		sh "docker rmi $(docker images -q) -f 2&>1 /dev/null" 
+		sh "docker rm $(docker ps -a -q)  2&>1 /dev/null"
                 sh "cd /data/mydocker1/mydocker"
 		sh "chmod 755 index.html"
                 sh "docker build -t mynginximage ."
@@ -22,6 +40,15 @@ pipeline {
                 sh "docker commit mynginx mynginxtag:1.0"
                 sh "docker tag mynginxtag:1.0 $DOCKER_USERNAME/mynginxdockerremote"
                 sh "docker image push $DOCKER_USERNAME/mynginxdockerremote"
+				    post {
+						always {
+						emailext body: 'Jenkins Pipeline Status',
+						attachLog: true,
+						compressLog: true,
+						mimeType: 'text/html',
+						subject: "Pipeline Build ${BUILD_NUMBER}",
+						to: "${params.EMAIL_RECIPIENTS}"
+}
             }	
         }
     }
