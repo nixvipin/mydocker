@@ -4,9 +4,6 @@ pipeline {
     stages {
         stage('DockerImageBuild') {
             steps {
-		sh "docker stop \$(docker ps -q) 2&>1 /dev/null"
-		sh "docker rm \$(docker ps -a -q)  -f 2&>1 /dev/nulldocker"
-		sh "docker rmi \$(docker images -q) -f 2&>1 /dev/null"
             	sh "cd /root/.jenkins/workspace/Myproject_pipeline"
 		sh "chmod 755 index.html"
             	sh "docker build -t mynginximage ."
