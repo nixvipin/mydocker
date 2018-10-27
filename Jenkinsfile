@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('DockerImageBuild') {
             steps {
-            	sh "cd /root/.jenkins/workspace/Myproject_pipeline"
+            	sh "cd /root/.jenkins/workspace/$JOB_NAME"
 		sh "chmod 755 index.html"
             	sh "docker build -t mynginximage ."
             }
