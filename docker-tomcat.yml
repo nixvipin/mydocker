@@ -1,0 +1,14 @@
+version: '3.6'
+
+services:
+
+  tomcat:
+    image: tomcat
+    restart: always
+    ports:
+      - 8001:8080
+    volumes:
+      - /data/mydocker2/employees.war:/usr/local/tomcat/webapps/myapp.war
+    links:
+      - mysql
+
