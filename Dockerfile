@@ -1,3 +1,3 @@
-FROM mysql:5.6
-
-ADD dump.sql /docker-entrypoint-initdb.d
+FROM nginx
+COPY index.html /usr/share/nginx/html
+EXPOSE 80
