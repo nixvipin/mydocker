@@ -12,7 +12,7 @@ pipeline {
 		stage('RunContainer') {
             steps {
 		sh '''
-		IPADDR1=\$(ip a | grep A3 eth0 | head -3 | tail -1 | awk '{print \$2}' | awk -F "/" '{print \$1}')
+		IPADDR1=\$(ip a | grep -A3 eth0 | head -3 | tail -1 | awk '{print \$2}' | awk -F "/" '{print \$1}')
                 docker run -d --name mynginx -p 8081:80 mynginximage
 		sleep 15
 		echo $IPADDR1
