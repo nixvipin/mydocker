@@ -14,6 +14,8 @@ pipeline {
                 sh "docker run -d --name mynginx -p 8081:80 mynginximage"
 		sh "sleep 30"
 		sh "IPADDR1=`ip a | grep A3 eth0 | head -3 | tail -1 | awk '{print \$2}' | awk -F "/" '{print \$1}'`"
+		sh "echo \$IPADDR1"
+		sh "exit 1"
                 sh "curl \$IPADDR1:8081"
             }
 		}
