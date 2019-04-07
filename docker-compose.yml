@@ -20,6 +20,6 @@ services:
     ports:
       - 8001:8080
     volumes:
-      - /data/mydocker1/war/employees.war:/usr/local/tomcat/webapps/myapp.war
+      - /usr/local/mydocker2/war/employees.war:/usr/local/tomcat/webapps/myapp.war
     links:
       - mysql
